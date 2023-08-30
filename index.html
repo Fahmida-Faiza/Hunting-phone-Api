@@ -12,22 +12,25 @@
 <h2 class="text-6xl">Hunting Phone</h2>
     </header>
 
-    <main>
+    <main class="container mx-auto mt-8">
+        <!-- sarch result -->
+        <section class="bg-gray-100 p-4 m-4">
+            <input id="search-field" type="text" placeholder="search here..." class="input input-bordered w-full max-w-xs" />
+            <button onclick="handleSearch()" class="btn btn-active btn-accent">Search</button>
+            <!-- another search field
+             -->
+            <input id="search_field2" type="text" placeholder="Search here" class="input w-full max-w-xs" />
+            <button   onclick="handleSearch2()"   class="btn btn-error">Search</button>
+        </section>
+
+        <!-- search reault -->
 <section>
     <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- <div class="card w-96 bg-gray-100 shadow-xl">
-            <figure class="px-10 pt-10">
-                <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
-            </figure>
-            <div class="card-body items-center text-center">
-                <h2 class="card-title">Shoes!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div class="card-actions">
-                    <button class="btn btn-primary">Buy Now</button>
-                </div>
-            </div>
-        </div> -->
     </div>
+    <!-- show all button -->
+       <div id="show-all-container" class="hidden">
+            <button class="btn btn-active btn-accent">Show More</button>
+       </div>
 </section>
     </main>
 
