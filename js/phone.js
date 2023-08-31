@@ -6,9 +6,9 @@ const loadPhone = async (searchText = "13", isShowAll) => {
   const data = await res.json();
   const phones = data.data;
   //    console.log(phones);
-  displayPhones(phones);
+  displayPhones(phones, isShowAll);
 };
-const displayPhones = (phones) => {
+const displayPhones = (phones, isShowAll) => {
   // console.log(phones);
   //step 1: set  korlam jeykahney boshabo
   const phoneContainer = document.getElementById("phone-container");
@@ -17,13 +17,19 @@ const displayPhones = (phones) => {
   //display all button if there are more than 12 besi hoy
 
   const showAllContainer = document.getElementById("show-all-container");
-  if (phones.length > 12) {
+  if (phones.length > 12 && !isShowAll) {
     showAllContainer.classList.remove("hidden");
   } else {
     showAllContainer.classList.add("hidden");
   }
-  //jototuk show korbo 0 thekey 12 porjonto
-  phones = phones.slice(0, 12);
+
+  //show all condition
+  console.log('is show all' , isShowAll)
+  if(!isShowAll){
+    //jototuk show korbo 0 thekey 12 porjonto
+    phones = phones.slice(0, 12);
+  }
+  
   phones.forEach((phone) => {
     // console.log(phone);
     //step 2:create a div
@@ -88,21 +94,21 @@ const showPhoneDetails = (phone) => {
 
 //handle search button
 
-const handleSearch = () => {
+const handleSearch = (isShowAll) => {
   // console.log('hi baby')
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
-  loadPhone(searchText);
+  loadPhone(searchText, isShowAll);
 };
 
 //handel search treacap
-const handleSearch2 = () => {
-  // console.log('hi baby')
-  toggleLoadingSpinner(true);
-  const searchField = document.getElementById("search_field2");
-  const searchText = searchField.value;
-  loadPhone(searchText);
-};
+// const handleSearch2 = () => {
+  
+//   toggleLoadingSpinner(true);
+//   const searchField = document.getElementById("search_field2");
+//   const searchText = searchField.value;
+//   loadPhone(searchText);
+// };
 
 const toggleLoadingSpinner = (isLoading) => {
   const loadingSpiner = document.getElementById("loading-spinner");
@@ -113,5 +119,11 @@ const toggleLoadingSpinner = (isLoading) => {
     loadingSpiner.classList.add("hidden");
   }
 };
+
+
+//handel show all button
+const handleShowAll = () =>{
+  handleSearch(true);
+}
 
 loadPhone();
